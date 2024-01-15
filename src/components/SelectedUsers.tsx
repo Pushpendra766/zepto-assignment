@@ -3,16 +3,22 @@ import colors from "../utils/Colors";
 const SelectedUsers = ({
   selectedChips,
   handleChipDelete,
+  readyToDelete,
 }: {
   selectedChips: string[];
   handleChipDelete: Function;
+  readyToDelete: boolean;
 }) => {
   return (
     <div className="flex flex-wrap gap-2">
       {selectedChips.map((chip, index) => (
         <p
           key={index}
-          className="bg-gray-200 rounded-full hover:bg-gray-400/70 pr-2 cursor-default py-1"
+          className={`bg-gray-200 rounded-full hover:bg-gray-400/70 pr-2 cursor-default py-1 ${
+            readyToDelete &&
+            index === selectedChips.length - 1 &&
+            "border-2 border-red-400"
+          }`}
         >
           <span
             className={

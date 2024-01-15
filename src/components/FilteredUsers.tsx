@@ -13,10 +13,9 @@ const FilteredUsers = ({
     <ul className="top-full bg-gray-100 py-2 rounded-b-md">
       {filteredUsers.length > 0 &&
         filteredUsers.map((user, index) => (
-          <>
+          <div key={index}>
             {" "}
             <li
-              key={index}
               onMouseDown={(e) => handleSuggestionClick(e, user.name)}
               className="text-sm cursor-pointer px-4 py-3 hover:bg-gray-200"
             >
@@ -32,7 +31,7 @@ const FilteredUsers = ({
               <span className="text-xs text-gray-500 ml-4">{user.email}</span>
             </li>
             <hr />
-          </>
+          </div>
         ))}
       {!filteredUsers.length && (
         <p className="text-gray-500 font-semibold px-2">No one to invite</p>

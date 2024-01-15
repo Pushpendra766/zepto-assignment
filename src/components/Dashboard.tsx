@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [filterValue, setFilterValue] = useState<string>("");
   const [selectedChips, setSelectedChips] = useState<string[]>([]);
+  const [readyToDelete, setReadyToDelete] = useState(false);
 
   const filteredUsers = usersData.filter(
     (user) =>
@@ -25,8 +26,19 @@ const Dashboard = () => {
   };
 
   const handleSuggestionClick = (e: MouseEvent, value: string) => {
+    setReadyToDelete(false);
     e.preventDefault();
     handleChipClick(value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (readyToDelete) {
+      const newArray = selectedChips.slice(0, -1);
+      setSelectedChips(newArray);
+    }
+    if (e.key == "Backspace") {
+      setReadyToDelete(true);
+    }
   };
 
   return (
@@ -37,6 +49,7 @@ const Dashboard = () => {
             <SelectedUsers
               selectedChips={selectedChips}
               handleChipDelete={handleChipDelete}
+              readyToDelete={readyToDelete}
             />
           )}
         </div>
@@ -47,7 +60,11 @@ const Dashboard = () => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             value={filterValue}
-            onChange={(e) => setFilterValue(e.target.value)}
+            onChange={(e) => {
+              setFilterValue(e.target.value);
+              setReadyToDelete(false);
+            }}
+            onKeyDown={handleKeyDown}
             className="outline-none"
           />
         </div>
