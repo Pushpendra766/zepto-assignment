@@ -1,5 +1,5 @@
 import { useState, MouseEvent } from "react";
-import { UserTypes, usersData } from "../utils/Users";
+import { usersData } from "../utils/Users";
 import SelectedUsers from "./SelectedUsers";
 import FilteredUsers from "./FilteredUsers";
 
