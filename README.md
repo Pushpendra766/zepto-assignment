@@ -18,4 +18,3 @@ Live Preview - [Netlify Deploy](https://zepto766.netlify.app/)
     ```bash
     npm run dev
     ```
-# zepto-assignment
