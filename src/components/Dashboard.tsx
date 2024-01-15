@@ -32,11 +32,11 @@ const Dashboard = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (readyToDelete) {
+    if (e.key === "Backspace" && readyToDelete) {
       const newArray = selectedChips.slice(0, -1);
       setSelectedChips(newArray);
     }
-    if (e.key == "Backspace") {
+    if (e.key === "Backspace") {
       setReadyToDelete(true);
     }
   };
