@@ -16,5 +16,5 @@ Live Preview - [Netlify Deploy](https://zepto766.netlify.app/)
     ```
 3.  Run
     ```bash
-    npm run dev
+    npm start
     ```
