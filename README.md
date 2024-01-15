@@ -2,7 +2,7 @@
 
 This is my submission for assignment for Frontend Developer role at Zepto.
 
-Live Preview - 
+Live Preview - [Netlify Deploy](https://zepto766.netlify.app/)
 
 ## Setup Instructions
 
