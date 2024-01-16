@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [filterValue, setFilterValue] = useState<string>("");
   const [selectedChips, setSelectedChips] = useState<string[]>([]);
   const [readyToDelete, setReadyToDelete] = useState(false);
-
+  const [highlightedRow, setHighlightedRow] = useState(-1);
   const filteredUsers = usersData.filter(
     (user) =>
       user.name.toLowerCase().includes(filterValue.toLowerCase()) &&
@@ -39,6 +39,17 @@ const Dashboard = () => {
     if (e.key === "Backspace") {
       setReadyToDelete(true);
     }
+    if (e.key === "ArrowDown") {
+      setHighlightedRow(highlightedRow + 1);
+      setReadyToDelete(false);
+    }
+    if (e.key === "ArrowUp") {
+      setHighlightedRow(highlightedRow - 1);
+      setReadyToDelete(false);
+    }
+    if (e.key === "Enter") {
+      handleChipClick(filteredUsers[highlightedRow].name);
+    }
   };
 
   return (
@@ -63,6 +74,7 @@ const Dashboard = () => {
             onChange={(e) => {
               setFilterValue(e.target.value);
               setReadyToDelete(false);
+              setHighlightedRow(0);
             }}
             onKeyDown={handleKeyDown}
             className="outline-none"
@@ -72,6 +84,7 @@ const Dashboard = () => {
           <FilteredUsers
             filteredUsers={filteredUsers}
             handleSuggestionClick={handleSuggestionClick}
+            highlightedRow={highlightedRow}
           />
         )}
       </div>

@@ -5,15 +5,20 @@ import colors from "../utils/Colors";
 const FilteredUsers = ({
   filteredUsers,
   handleSuggestionClick,
+  highlightedRow,
 }: {
   filteredUsers: UserTypes[];
   handleSuggestionClick: Function;
+  highlightedRow: Number;
 }) => {
   return (
     <ul className="top-full bg-gray-100 py-2 rounded-b-md">
       {filteredUsers.length > 0 &&
         filteredUsers.map((user, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            className={`${highlightedRow === index && "bg-gray-200"}`}
+          >
             {" "}
             <li
               onMouseDown={(e) => handleSuggestionClick(e, user.name)}
